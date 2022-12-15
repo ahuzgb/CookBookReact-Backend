@@ -30,13 +30,13 @@ app.get("/api/recipes", (req, res) => {
 });
 
 app.post("/api/recipes", (req, res) => {
-  const { title, nameId, image, type, vegetarian, ingredients, instructions } =
+  const { title, nameid, image, type, vegetarian, ingredients, instructions } =
     req.body;
 
   pool
     .query(
-      "INSERT INTO recipes (title, nameId, image , type , vegetarian  , ingredients , instructions ) VALUES ($1, $2 , $3 , $4 , $5 , $6 , $7) ",
-      [title, nameId, image, type, vegetarian, ingredients, instructions]
+      "INSERT INTO recipes (title, nameid, image , type , vegetarian  , ingredients , instructions ) VALUES ($1, $2 , $3 , $4 , $5 , $6 , $7) RETURNING * ",
+      [title, nameid, image, type, vegetarian, ingredients, instructions]
     )
     .then((data) => res.json(data.rows[0]))
     .catch((e) => res.sendStatus(500));
