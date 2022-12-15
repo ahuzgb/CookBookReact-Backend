@@ -31,6 +31,7 @@ app.get("/api/recipes", (req, res) => {
 
 app.post("/api/recipes", (req, res) => {
   const { title, nameid, image, type, vegetarian, ingredients, instructions } =
+  const { title, nameid, image, type, vegetarian, ingredients, instructions } =
     req.body;
 
   pool
