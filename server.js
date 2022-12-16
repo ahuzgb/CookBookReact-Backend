@@ -57,7 +57,6 @@ app.post("/api/recipes", upload.single("selectedFile"), (req, res) => {
   const vegetarian = req.body.vegetarian;
   const ingredients = req.body.ingredients;
   const instructions = req.body.instructions;
-  const ingredientsString = JSON.stringify(ingredients);
 
   const fileType = req.file.mimetype.split("/")[1];
   const newFile = req.file.filename + "." + fileType;
@@ -70,7 +69,7 @@ app.post("/api/recipes", upload.single("selectedFile"), (req, res) => {
   pool
     .query(
       "INSERT INTO recipes (title, nameid, image , type , vegetarian  , ingredients , instructions ) VALUES ($1, $2 , $3 , $4 , $5 , $6 , $7) RETURNING * ",
-      [title, nameid, image, type, vegetarian, ingredientsString, instructions]
+      [title, nameid, image, type, vegetarian, ingredients, instructions]
     )
     .then((data) => res.json(data.rows[0]))
     .catch((e) => res.sendStatus(500));
