@@ -3,7 +3,11 @@ const app = express();
 const cors = require("cors");
 require("dotenv").config();
 
-app.use(cors());
+const corsOptions = {
+  origin: "https://statuesque-treacle-992b31.netlify.app/",
+};
+
+app.use(cors(corsOptions));
 app.use(express.json());
 
 const { Pool } = require("pg");
@@ -30,7 +34,6 @@ app.get("/api/recipes", (req, res) => {
 });
 
 app.post("/api/recipes", (req, res) => {
-  const { title, nameid, image, type, vegetarian, ingredients, instructions } =
   const { title, nameid, image, type, vegetarian, ingredients, instructions } =
     req.body;
 
