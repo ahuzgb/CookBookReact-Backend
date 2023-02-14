@@ -10,7 +10,6 @@ const corsOptions = {
 };
 
 app.use(cors(corsOptions));
-app.use(express.json());
 
 app.use("/static", express.static("./uploads"));
 const upload = multer({ dest: "./uploads" });
@@ -77,6 +76,7 @@ app.post("/api/recipes", upload.single("selectedFile"), (req, res) => {
     .then((data) => res.json(data.rows[0]))
     .catch((e) => res.sendStatus(500));
 });
+app.use(express.json());
 
 app.listen(PORT, () => {
   console.log(`Server is listening on http://localhost:${PORT}`);
