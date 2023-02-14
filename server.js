@@ -5,11 +5,7 @@ const app = express();
 const cors = require("cors");
 require("dotenv").config();
 
-const corsOptions = {
-  origin: "https://statuesque-treacle-992b31.netlify.app/",
-};
-
-app.use(cors(corsOptions));
+app.use(cors());
 app.use(express.json());
 
 app.use("/static", express.static("./uploads"));
