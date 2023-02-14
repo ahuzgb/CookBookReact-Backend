@@ -1,9 +1,13 @@
 const express = require("express");
 const app = express();
 const cors = require("cors");
-require("dotenv").config();
 
-app.use(cors());
+require("dotenv").config();
+const corsOptions = {
+  origin: "https://marvelous-brigadeiros-cbe7ea.netlify.app",
+};
+
+app.use(cors(corsOptions));
 app.use(express.json());
 
 const { Pool } = require("pg");
